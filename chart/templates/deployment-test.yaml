@@ -264,7 +264,7 @@ tests:
             - containerPort: 3923
               name: "http"
               protocol: "TCP"
-            - containerPort: 3923
+            - containerPort: 3000
               name: "metrics"
               protocol: "TCP"
 
