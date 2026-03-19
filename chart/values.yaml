@@ -283,7 +283,7 @@ containerPorts:
     port: 3923
     protocol: "TCP"
   - name: "metrics"
-    port: 3923
+    port: 3000
     protocol: "TCP"
 
 # -- Service configuration.
