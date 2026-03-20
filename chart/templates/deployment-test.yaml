@@ -410,8 +410,8 @@ tests:
             - emptyDir: {}
               name: "app-data"
             - name: "copyparty-config"
-              secret:
-                secretName: "copyparty-config"
+              configMap:
+                name: "copyparty-config"
             - emptyDir: {}
               name: "tmp"
             - emptyDir: {}
@@ -427,9 +427,8 @@ tests:
         foo:
           volume:
             name: "foo"
-            secret:
-              secretName: "mysecret"
-              optional: false
+            configMap:
+              name: "myconfigmap"
           persistence:
             enabled: false
             volume:
@@ -439,9 +438,8 @@ tests:
           path: "spec.template.spec.volumes"
           value:
             - name: "foo"
-              secret:
-                secretName: "mysecret"
-                optional: false
+              configMap:
+                name: "myconfigmap"
 
   - it: "should render persistence volumes with default value"
     set:
@@ -460,8 +458,8 @@ tests:
               persistentVolumeClaim:
                 claimName: "app-data"
             - name: "copyparty-config"
-              secret:
-                secretName: "copyparty-config"
+              configMap:
+                name: "copyparty-config"
             - emptyDir: {}
               name: "tmp"
             - name: "user-data"

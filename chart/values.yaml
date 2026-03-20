@@ -241,8 +241,10 @@ volumeConfig:
     # -- Will be added to the pods `volumes`.
     volume:
       name: "copyparty-config"
-      secret:
-        secretName: "copyparty-config"
+      configMap:
+        name: "copyparty-config"
+      #secret:
+      #  secretName: "copyparty-config"
   tmp:
     # -- Will be added to the pods `volumeMounts`.
     volumeMount:
