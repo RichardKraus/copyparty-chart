@@ -83,6 +83,10 @@ podSecurityContext:
 # Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
 containerSecurityContext:
   readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  capabilities: { drop: ["ALL"] }
+  seccompProfile: { type: "RuntimeDefault" }
   runAsUser: 10001
   runAsGroup: 10001
 

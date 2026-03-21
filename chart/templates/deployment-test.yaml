@@ -206,22 +206,43 @@ tests:
           path: "spec.template.spec.containers[0].securityContext"
           value:
             readOnlyRootFilesystem: true
+            runAsNonRoot: true
             runAsGroup: 10001
             runAsUser: 10001
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - "ALL"
+            seccompProfile:
+              type: "RuntimeDefault"
 
   - it: "should render container securityContext as set"
     set:
       containerSecurityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
         readOnlyRootFilesystem: false
+        runAsNonRoot: false
+        runAsGroup: 1000
+        runAsUser: 1000
+        allowPrivilegeEscalation: true
+        capabilities:
+          drop:
+            - "CAP_CHOWN"
+        seccompProfile:
+          type: "Unconfined"
     asserts:
       - equal:
           path: "spec.template.spec.containers[0].securityContext"
           value:
-            runAsUser: 1000
-            runAsGroup: 1000
             readOnlyRootFilesystem: false
+            runAsNonRoot: false
+            runAsGroup: 1000
+            runAsUser: 1000
+            allowPrivilegeEscalation: true
+            capabilities:
+              drop:
+                - "CAP_CHOWN"
+            seccompProfile:
+              type: "Unconfined"
 
   - it: "should render image with default value"
     chart:
